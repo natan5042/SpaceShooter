@@ -82,7 +82,7 @@ public:
 	float SpawnDelay = 1.2f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Réglages")
-	FString TeamMembers = TEXT("Natan - Arnaud");
+	FString TeamMembers = TEXT("Réalisé par Natan Arnaud");
 
 	// Actions du menu.
 	UFUNCTION(BlueprintCallable, Category = "Jeu")
