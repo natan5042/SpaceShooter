@@ -1,0 +1,651 @@
+{
+	"folders": [
+		{
+			"name": "SpaceShooter",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+		}
+	],
+	"settings": {
+		"js/ts.tsc.autoDetect": "off",
+		"npm.autoDetect": "off",
+		"terminal.integrated.env.windows": {
+			"PATH": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64;${env:PATH}",
+			"DOTNET_ROOT": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64",
+			"DOTNET_HOST_PATH": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64\\dotnet.exe",
+			"DOTNET_MULTILEVEL_LOOKUP": "0",
+			"DOTNET_ROLL_FORWARD": "LatestMajor"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "SpaceShooter Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooter Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooter Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooter Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Test Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Test",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Test Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Test",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooter Win64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Test Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Test",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Shipping Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Shipping",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Shipping",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooter Win64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooter Win64 Shipping Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooter",
+					"Win64",
+					"Shipping",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooterEditor Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Debug",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooterEditor Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"SpaceShooterEditor Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"label": "SpaceShooterEditor Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"SpaceShooterEditor",
+					"Win64",
+					"Development",
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch SpaceShooter (Debug)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+				"preLaunchTask": "SpaceShooter Win64 Debug Build",
+				"args": [
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooter (DebugGame)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+				"preLaunchTask": "SpaceShooter Win64 DebugGame Build",
+				"args": [
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooter (Development)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\Binaries\\Win64\\UnrealGame.exe",
+				"preLaunchTask": "SpaceShooter Win64 Development Build",
+				"args": [
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooter (Test)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+				"preLaunchTask": "SpaceShooter Win64 Test Build",
+				"args": [
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooter (Shipping)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+				"preLaunchTask": "SpaceShooter Win64 Shipping Build",
+				"args": [
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooterEditor (Debug)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
+				"preLaunchTask": "SpaceShooterEditor Win64 Debug Build",
+				"args": [
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject"
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooterEditor (DebugGame)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
+				"preLaunchTask": "SpaceShooterEditor Win64 DebugGame Build",
+				"args": [
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject"
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Launch SpaceShooterEditor (Development)",
+				"request": "launch",
+				"program": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+				"preLaunchTask": "SpaceShooterEditor Win64 Development Build",
+				"args": [
+					"C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject"
+				],
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8",
+				"stopAtEntry": false,
+				"console": "integratedTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				},
+				"sourceMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+				}
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Win64 Development Build",
+				"program": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Build\\BatchFiles\\RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=C:\\Users\\Natan\\Desktop\\cour\\Moteur_de_jeu\\tp1\\SpaceShooter\\SpaceShooter.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"env": {
+					"PATH": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64;${env:PATH}",
+					"DOTNET_ROOT": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64",
+					"DOTNET_HOST_PATH": "C:\\Users\\Natan\\Desktop\\UE_5.8\\Engine\\Binaries\\ThirdParty\\DotNet\\10.0\\win-x64\\dotnet.exe",
+					"DOTNET_MULTILEVEL_LOOKUP": "0",
+					"DOTNET_ROLL_FORWARD": "LatestMajor"
+				},
+				"console": "integratedTerminal",
+				"stopAtEntry": false,
+				"cwd": "C:\\Users\\Natan\\Desktop\\UE_5.8"
+			}
+		]
+	}
+}
