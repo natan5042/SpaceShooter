@@ -1,4 +1,4 @@
-#include "ShooterPlayerController.h"
+﻿#include "ShooterPlayerController.h"
 #include "ShooterGameMode.h"
 #include "ShipPawn.h"
 #include "Engine/World.h"
@@ -27,7 +27,7 @@ void AShooterPlayerController::PlayerTick(float DeltaTime)
 		return;
 	}
 
-	// Echap : retour au menu, ou quitter si on y est deja.
+	// Échap : retour au menu, ou quitter si on y est déjà.
 	if (WasInputKeyJustPressed(EKeys::Escape))
 	{
 		if (GameMode->State == EGameState::Menu)
@@ -43,7 +43,7 @@ void AShooterPlayerController::PlayerTick(float DeltaTime)
 
 	if (GameMode->State == EGameState::Playing)
 	{
-		// Deplacement du vaisseau avec les fleches.
+		// Déplacement du vaisseau avec les flèches.
 		FVector2D Direction = FVector2D::ZeroVector;
 
 		if (IsInputKeyDown(EKeys::Left))

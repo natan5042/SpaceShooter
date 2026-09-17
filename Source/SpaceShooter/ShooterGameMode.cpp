@@ -1,4 +1,4 @@
-#include "ShooterGameMode.h"
+﻿#include "ShooterGameMode.h"
 #include "ShooterPlayerController.h"
 #include "ShooterHUD.h"
 #include "ShipPawn.h"
@@ -21,19 +21,24 @@ AShooterGameMode::AShooterGameMode()
 
 void AShooterGameMode::HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer)
 {
-	// Vide : le vaisseau est cree seulement quand on lance une partie.
+	// Vide : le vaisseau est créé seulement quand on lance une partie.
 }
 
 void AShooterGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// On cree les etoiles du fond une seule fois.
-	for (int32 i = 0; i < 120; i++)
+	// Le fond est fait de trois couches d'étoiles : les plus lointaines sont
+	// petites, sombres et lentes, ce qui donne un effet de profondeur.
+	for (int32 i = 0; i < 150; i++)
 	{
+		int32 Layer = i % 3;
+
 		FStar Star;
 		Star.Position = FVector2D(FMath::FRandRange(0.0f, ScreenSize.X), FMath::FRandRange(0.0f, ScreenSize.Y));
-		Star.Speed = FMath::FRandRange(30.0f, 120.0f);
+		Star.Speed = 25.0f + Layer * 45.0f;
+		Star.Size = 1.0f + Layer * 1.0f;
+		Star.Brightness = 0.30f + Layer * 0.25f;
 		Stars.Add(Star);
 	}
 }
@@ -42,7 +47,7 @@ void AShooterGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// On recupere la taille de la fenetre pour que le jeu s'adapte.
+	// On récupère la taille de la fenêtre pour que le jeu s'adapte.
 	if (GEngine && GEngine->GameViewport)
 	{
 		FVector2D NewSize;
@@ -53,7 +58,7 @@ void AShooterGameMode::Tick(float DeltaTime)
 		}
 	}
 
-	// Les etoiles descendent et reviennent en haut.
+	// Les étoiles descendent et reviennent en haut.
 	for (int32 i = 0; i < Stars.Num(); i++)
 	{
 		Stars[i].Position.Y += Stars[i].Speed * DeltaTime;
@@ -78,6 +83,32 @@ void AShooterGameMode::Tick(float DeltaTime)
 		}
 	}
 
+	// Les points gagnés montent doucement avant de s'effacer.
+	for (int32 i = Popups.Num() - 1; i >= 0; i--)
+	{
+		Popups[i].Life -= DeltaTime;
+		if (Popups[i].Life <= 0.0f)
+		{
+			Popups.RemoveAt(i);
+		}
+		else
+		{
+			Popups[i].Position.Y -= 50.0f * DeltaTime;
+		}
+	}
+
+	// Secousse de l'écran : elle s'atténue toute seule.
+	if (ShakeTime > 0.0f)
+	{
+		ShakeTime -= DeltaTime;
+		float Force = ShakeForce * FMath::Max(0.0f, ShakeTime) * 4.0f;
+		ShakeOffset = FVector2D(FMath::FRandRange(-Force, Force), FMath::FRandRange(-Force, Force));
+	}
+	else
+	{
+		ShakeOffset = FVector2D::ZeroVector;
+	}
+
 	if (State != EGameState::Playing)
 	{
 		return;
@@ -85,7 +116,7 @@ void AShooterGameMode::Tick(float DeltaTime)
 
 	GameTime += DeltaTime;
 
-	// Apparition d'un asteroide a intervalle aleatoire, de plus en plus vite.
+	// Apparition d'un astéroïde à intervalle aléatoire, de plus en plus vite.
 	SpawnTimer -= DeltaTime;
 	if (SpawnTimer <= 0.0f)
 	{
@@ -96,7 +127,7 @@ void AShooterGameMode::Tick(float DeltaTime)
 		SpawnTimer = Delay * FMath::FRandRange(0.7f, 1.3f);
 	}
 
-	// On supprime les projectiles sortis de l'ecran.
+	// On supprime les projectiles sortis de l'écran.
 	for (int32 i = Projectiles.Num() - 1; i >= 0; i--)
 	{
 		if (!IsValid(Projectiles[i]) || Projectiles[i]->Position.Y < -50.0f)
@@ -109,7 +140,7 @@ void AShooterGameMode::Tick(float DeltaTime)
 		}
 	}
 
-	// Idem pour les asteroides.
+	// Idem pour les astéroïdes.
 	for (int32 i = Asteroids.Num() - 1; i >= 0; i--)
 	{
 		if (!IsValid(Asteroids[i]) || Asteroids[i]->IsOutOfScreen(ScreenSize))
@@ -169,7 +200,7 @@ void AShooterGameMode::StartGame()
 	SpawnTimer = 1.0f;
 	State = EGameState::Playing;
 
-	// On cree le vaisseau et on le donne au joueur.
+	// On crée le vaisseau et on le donne au joueur.
 	Ship = GetWorld()->SpawnActor<AShipPawn>();
 	if (Ship)
 	{
@@ -230,6 +261,7 @@ void AShooterGameMode::ClearGame()
 	Ship = nullptr;
 
 	Particles.Empty();
+	Popups.Empty();
 }
 
 // ---------------------------------------------------------------- Tir
@@ -241,7 +273,7 @@ void AShooterGameMode::Fire()
 		return;
 	}
 
-	// Le vaisseau refuse de tirer si le delai entre deux tirs n'est pas ecoule.
+	// Le vaisseau refuse de tirer si le délai entre deux tirs n'est pas écoulé.
 	if (!Ship->CanFire())
 	{
 		return;
@@ -257,11 +289,12 @@ void AShooterGameMode::Fire()
 		Projectiles.Add(Projectile);
 	}
 
-	// Effet visuel du tir.
+	// Effet visuel du tir : une gerbe d'étincelles bleues et un petit recul.
 	AddExplosion(Start, FLinearColor(0.4f, 0.9f, 1.0f, 1.0f), 5);
+	AddShake(0.6f);
 }
 
-// ---------------------------------------------------------------- Asteroides
+// ---------------------------------------------------------------- Astéroïdes
 
 void AShooterGameMode::SpawnAsteroid()
 {
@@ -269,7 +302,7 @@ void AShooterGameMode::SpawnAsteroid()
 	FVector2D Position;
 	int32 Edge = FMath::RandRange(0, 2);
 
-	// Apparition sur un bord de l'ecran, a une position aleatoire.
+	// Apparition sur un bord de l'écran, à une position aléatoire.
 	if (Edge == 1)
 	{
 		Position = FVector2D(-Radius, FMath::FRandRange(0.0f, ScreenSize.Y * 0.5f));
@@ -283,7 +316,7 @@ void AShooterGameMode::SpawnAsteroid()
 		Position = FVector2D(FMath::FRandRange(0.0f, ScreenSize.X), -Radius);
 	}
 
-	// Force initiale : soit vers le joueur, soit dans une direction aleatoire.
+	// Force initiale : soit vers le joueur, soit dans une direction aléatoire.
 	FVector2D Direction;
 	if (IsValid(Ship) && FMath::FRand() < 0.5f)
 	{
@@ -292,7 +325,7 @@ void AShooterGameMode::SpawnAsteroid()
 	}
 	else
 	{
-		// On vise un point au hasard en bas de l'ecran pour que l'asteroide le traverse.
+		// On vise un point au hasard en bas de l'écran pour que l'astéroïde le traverse.
 		FVector2D Target = FVector2D(FMath::FRandRange(0.0f, ScreenSize.X), ScreenSize.Y);
 		Direction = Target - Position;
 		Direction.Normalize();
@@ -304,8 +337,11 @@ void AShooterGameMode::SpawnAsteroid()
 		Asteroid->Position = Position;
 		Asteroid->Velocity = Direction * FMath::FRandRange(AsteroidMinSpeed, AsteroidMaxSpeed);
 		Asteroid->Radius = Radius;
-		// Nombre de tirs aleatoire pour detruire l'asteroide.
+		// Nombre de tirs aléatoire pour détruire l'astéroïde.
 		Asteroid->Life = FMath::RandRange(1, 3);
+		// Chaque astéroïde tourne à sa propre vitesse, dans un sens ou dans l'autre.
+		Asteroid->Angle = FMath::FRandRange(0.0f, 6.28f);
+		Asteroid->Spin = FMath::FRandRange(-1.4f, 1.4f);
 		Asteroids.Add(Asteroid);
 	}
 }
@@ -314,7 +350,7 @@ void AShooterGameMode::SpawnAsteroid()
 
 void AShooterGameMode::CheckCollisions()
 {
-	// Projectiles contre asteroides.
+	// Projectiles contre astéroïdes.
 	for (int32 i = Projectiles.Num() - 1; i >= 0; i--)
 	{
 		for (int32 j = Asteroids.Num() - 1; j >= 0; j--)
@@ -326,12 +362,19 @@ void AShooterGameMode::CheckCollisions()
 			}
 
 			Asteroids[j]->Life--;
+			Asteroids[j]->HitFlash = 1.0f;
 
 			if (Asteroids[j]->Life <= 0)
 			{
-				// Explosion et points quand l'asteroide est detruit.
-				Score += 50;
+				// Explosion, points et secousse quand l'astéroïde est détruit.
+				// Les gros astéroïdes rapportent davantage.
+				int32 Points = 50 + FMath::RoundToInt(Asteroids[j]->Radius);
+				Score += Points;
+
 				AddExplosion(Asteroids[j]->Position, FLinearColor(1.0f, 0.6f, 0.2f, 1.0f), 20);
+				AddPopup(Asteroids[j]->Position, FString::Printf(TEXT("+%d"), Points));
+				AddShake(2.5f);
+
 				Asteroids[j]->Destroy();
 				Asteroids.RemoveAt(j);
 			}
@@ -346,7 +389,7 @@ void AShooterGameMode::CheckCollisions()
 		}
 	}
 
-	// Asteroides contre vaisseau.
+	// Astéroïdes contre vaisseau.
 	if (!IsValid(Ship) || Ship->InvulnerabilityTime > 0.0f)
 	{
 		return;
@@ -369,11 +412,13 @@ void AShooterGameMode::CheckCollisions()
 void AShooterGameMode::LoseLife()
 {
 	Lives--;
+	AddShake(6.0f);
 
 	if (Lives <= 0)
 	{
 		AddExplosion(Ship->Position, FLinearColor(1.0f, 0.5f, 0.2f, 1.0f), 40);
 		State = EGameState::GameOver;
+		BestScore = FMath::Max(BestScore, Score);
 
 		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0);
 		if (PlayerController)
@@ -386,7 +431,7 @@ void AShooterGameMode::LoseLife()
 	}
 	else
 	{
-		// On replace le vaisseau au centre et on le rend invulnerable un moment.
+		// On replace le vaisseau au centre et on le rend invulnérable un moment.
 		Ship->Position = FVector2D(ScreenSize.X * 0.5f, ScreenSize.Y - 120.0f);
 		Ship->InvulnerabilityTime = 2.0f;
 	}
@@ -410,4 +455,24 @@ void AShooterGameMode::AddExplosion(const FVector2D& Position, const FLinearColo
 
 		Particles.Add(Particle);
 	}
+}
+
+void AShooterGameMode::AddPopup(const FVector2D& Position, const FString& Text)
+{
+	FPopup Popup;
+	Popup.Position = Position;
+	Popup.Text = Text;
+	Popup.Life = 0.9f;
+
+	Popups.Add(Popup);
+}
+
+void AShooterGameMode::AddShake(float Force)
+{
+	// Une nouvelle secousse ne doit pas affaiblir celle qui est en cours.
+	if (Force > ShakeForce || ShakeTime <= 0.0f)
+	{
+		ShakeForce = Force;
+	}
+	ShakeTime = 0.25f;
 }

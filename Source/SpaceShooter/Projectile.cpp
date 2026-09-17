@@ -1,4 +1,4 @@
-#include "Projectile.h"
+﻿#include "Projectile.h"
 #include "Components/SceneComponent.h"
 
 AProjectile::AProjectile()

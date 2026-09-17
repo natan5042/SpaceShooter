@@ -1,4 +1,4 @@
-#include "ShipPawn.h"
+﻿#include "ShipPawn.h"
 #include "Components/SceneComponent.h"
 
 AShipPawn::AShipPawn()
@@ -28,9 +28,12 @@ void AShipPawn::Move(const FVector2D& Direction, const FVector2D& ScreenSize, fl
 {
 	Position += Direction * Speed * DeltaTime;
 
-	// Le vaisseau ne doit pas sortir de l'ecran.
+	// Le vaisseau ne doit pas sortir de l'écran.
 	Position.X = FMath::Clamp(Position.X, 30.0f, ScreenSize.X - 30.0f);
 	Position.Y = FMath::Clamp(Position.Y, 40.0f, ScreenSize.Y - 40.0f);
+
+	// Le vaisseau penche du côté où il se déplace.
+	Lean = FMath::FInterpTo(Lean, Direction.X, DeltaTime, 9.0f);
 }
 
 bool AShipPawn::CanFire()

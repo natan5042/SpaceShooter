@@ -1,14 +1,14 @@
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "ShooterPlayerController.generated.h"
 
 // Lecture des touches du clavier.
-//   Fleches      : deplacer le vaisseau
+//   Flèches      : déplacer le vaisseau
 //   Barre espace : tirer
-//   Entree       : valider dans le menu
-//   Echap        : revenir au menu / quitter
+//   Entrée       : valider dans le menu
+//   Échap        : revenir au menu / quitter
 UCLASS()
 class SPACESHOOTER_API AShooterPlayerController : public APlayerController
 {

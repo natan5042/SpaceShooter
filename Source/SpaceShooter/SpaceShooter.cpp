@@ -1,4 +1,4 @@
-// Copyright TP1 - Moteurs de jeu.
+﻿// Copyright TP1 - Moteurs de jeu.
 
 #include "SpaceShooter.h"
 #include "Modules/ModuleManager.h"
